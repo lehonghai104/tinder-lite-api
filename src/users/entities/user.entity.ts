@@ -1,9 +1,9 @@
-export class User {
+export interface User {
   email: string;
-  password: string;
   firstName: string;
   id: string;
   lastName: string;
-  picture: string;
+  picture?: string;
   title: string;
+  [prop: string]: string;
 }
