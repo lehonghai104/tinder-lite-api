@@ -32,6 +32,13 @@
 $ npm install
 ```
 
+## Init database
+
+```bash
+# chmod +x init-db.sh
+$ ./init-db.sh
+```
+
 ## Running the app
 
 ```bash

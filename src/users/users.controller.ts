@@ -5,11 +5,6 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
-  }
-
   @Get('unmeet')
   findAllUnmeet() {
     return this.usersService.findAllUnmeet();
@@ -23,5 +18,10 @@ export class UsersController {
   @Post('pass/:id')
   pass(@Param('id') id: string) {
     return this.usersService.pass(id);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOne(id);
   }
 }

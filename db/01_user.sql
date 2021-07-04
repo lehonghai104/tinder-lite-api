@@ -1,10 +1,11 @@
 CREATE TABLE tinder.`user` (
 	id varchar(36) NOT NULL,
 	email varchar(100) NOT NULL,
-	password varchar(64) NOT NULL,
+	`password` varchar(64) NOT NULL,
 	firstname varchar(20) NOT NULL,
 	lastname varchar(20) NOT NULL,
-	picture varchar(200) NULL
+	picture varchar(200) NULL,
+  PRIMARY KEY (`id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
