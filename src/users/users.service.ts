@@ -9,6 +9,7 @@ const users: User[] = [
     lastName: 'Andersen',
     email: 'sara.andersen@example.com',
     picture: 'https://randomuser.me/api/portraits/women/58.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109cb',
@@ -17,6 +18,7 @@ const users: User[] = [
     lastName: 'Vestering',
     email: 'edita.vestering@example.com',
     picture: 'https://randomuser.me/api/portraits/med/women/89.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109cc',
@@ -25,6 +27,7 @@ const users: User[] = [
     lastName: 'Barbosa',
     email: 'edina.barbosa@example.com',
     picture: 'https://randomuser.me/api/portraits/med/women/28.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109cd',
@@ -33,6 +36,7 @@ const users: User[] = [
     lastName: 'Vega',
     email: 'roberto.vega@example.com',
     picture: 'https://randomuser.me/api/portraits/med/men/25.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109ce',
@@ -41,6 +45,7 @@ const users: User[] = [
     lastName: 'Droste',
     email: 'rudi.droste@example.com',
     picture: 'https://randomuser.me/api/portraits/med/men/83.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109cf',
@@ -49,6 +54,7 @@ const users: User[] = [
     lastName: 'Lima',
     email: 'carolina.lima@example.com',
     picture: 'https://randomuser.me/api/portraits/med/women/5.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109d0',
@@ -57,6 +63,7 @@ const users: User[] = [
     lastName: 'Asikoglu',
     email: 'emre.asikoglu@example.com',
     picture: 'https://randomuser.me/api/portraits/med/men/23.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109d1',
@@ -65,6 +72,7 @@ const users: User[] = [
     lastName: 'Brewer',
     email: 'kent.brewer@example.com',
     picture: 'https://randomuser.me/api/portraits/med/men/52.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109d2',
@@ -73,6 +81,7 @@ const users: User[] = [
     lastName: 'Carlson',
     email: 'evan.carlson@example.com',
     picture: 'https://randomuser.me/api/portraits/med/men/80.jpg',
+    password: '123456',
   },
   {
     id: '60d0fe4f5311236168a109d3',
@@ -81,13 +90,14 @@ const users: User[] = [
     lastName: 'Brand',
     email: 'friedrich-karl.brand@example.com',
     picture: 'https://randomuser.me/api/portraits/med/men/7.jpg',
+    password: '123456',
   },
 ];
 
 @Injectable()
 export class UsersService {
-  findOne(id: string) {
-    return users.find((user) => user.id === id);
+  findOne(email: string) {
+    return users.find((user) => user.email === email);
   }
 
   findAllUnmeet() {
