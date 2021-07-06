@@ -1,27 +1,41 @@
-import { Controller, Get, Post, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  UseGuards,
+  Request,
+  Delete,
+} from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { User } from './user.entity';
 import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get('unmeet')
-  findAllUnmeet() {
-    return this.usersService.findAllUnmeet();
+  findAllUnmeet(@Request() req): Promise<User[]> {
+    return this.usersService.findAllUnmeet(req.user.id);
   }
 
-  @Post('like/:id')
-  like(@Param('id') id: string) {
-    return this.usersService.like(id);
+  @UseGuards(JwtAuthGuard)
+  @Delete('meet')
+  RemoveAllMeet(@Request() req): Promise<User[]> {
+    return this.usersService.removeAllUnmeet(req.user.id);
   }
 
-  @Post('pass/:id')
-  pass(@Param('id') id: string) {
-    return this.usersService.pass(id);
+  @UseGuards(JwtAuthGuard)
+  @Post('like/:targer_id')
+  like(@Request() req, @Param('targer_id') targer_id: string) {
+    return this.usersService.like(req.user.id, targer_id);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  @UseGuards(JwtAuthGuard)
+  @Post('pass/:targer_id')
+  pass(@Request() req, @Param('targer_id') targer_id: string) {
+    return this.usersService.pass(req.user.id, targer_id);
   }
 }

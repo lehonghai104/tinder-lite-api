@@ -18,5 +18,8 @@ export class User {
   lastname: string;
 
   @Column()
+  gender: string;
+
+  @Column()
   picture: string;
 }

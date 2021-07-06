@@ -14,15 +14,35 @@ export class UsersService {
     return this.usersRepository.findOne(id);
   }
 
-  findAllUnmeet() {
-    return this.usersRepository.find();
+  findOneByEmail(email: string) {
+    return this.usersRepository.findOne({ where: { email } });
   }
 
-  like(id: string) {
-    return `This action liked a #${id} user`;
+  async findAllUnmeet(user_id: string) {
+    const user = await this.usersRepository.findOne({ where: { id: user_id } });
+    return this.usersRepository.query(
+      `select id, gender, firstname, lastname, picture from user where gender != ? and id not in (select target_user_id from action where user_id = ?)`,
+      [user.gender, user_id],
+    );
   }
 
-  pass(id: string) {
-    return `This action passed a #${id} user`;
+  async removeAllUnmeet(user_id: string) {
+    return this.usersRepository.query(`DELETE FROM action WHERE user_id = ?`, [
+      user_id,
+    ]);
+  }
+
+  async like(user_id: string, target_user_id: string) {
+    await this.usersRepository.query(
+      `insert into action (user_id, target_user_id, action) values (?, ?, ?);`,
+      [user_id, target_user_id, 1],
+    );
+  }
+
+  async pass(user_id: string, target_user_id: string) {
+    await this.usersRepository.query(
+      `insert into action (user_id, target_user_id, action) values (?, ?, ?);`,
+      [user_id, target_user_id, 1],
+    );
   }
 }
